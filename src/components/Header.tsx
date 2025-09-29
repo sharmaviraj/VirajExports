@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Phone, Mail } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -43,21 +44,23 @@ const Header = () => {
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-8">
-              <a href="#home" className="text-foreground hover:text-primary transition-colors">
+              <Link to="/" className="text-foreground hover:text-primary transition-colors">
                 Home
-              </a>
-              <a href="#about" className="text-foreground hover:text-primary transition-colors">
+              </Link>
+              <Link to="/#about" className="text-foreground hover:text-primary transition-colors">
                 About
-              </a>
-              <a href="#services" className="text-foreground hover:text-primary transition-colors">
+              </Link>
+              <Link to="/#services" className="text-foreground hover:text-primary transition-colors">
                 Services
-              </a>
-              <a href="#affiliations" className="text-foreground hover:text-primary transition-colors">
+              </Link>
+              <Link to="/#affiliations" className="text-foreground hover:text-primary transition-colors">
                 Affiliations
-              </a>
-              <Button variant="default" className="hover-glow">
-                Contact Us
-              </Button>
+              </Link>
+              <Link to="/contact">
+                <Button variant="default" className="hover-glow">
+                  Contact Us
+                </Button>
+              </Link>
             </div>
 
             {/* Mobile Menu Button */}
@@ -77,38 +80,40 @@ const Header = () => {
           {isMenuOpen && (
             <div className="md:hidden border-t border-border">
               <div className="px-2 pt-2 pb-3 space-y-1 bg-background">
-                <a
-                  href="#home"
+                <Link
+                  to="/"
                   className="block px-3 py-2 text-foreground hover:text-primary transition-colors"
                   onClick={toggleMenu}
                 >
                   Home
-                </a>
-                <a
-                  href="#about"
+                </Link>
+                <Link
+                  to="/#about"
                   className="block px-3 py-2 text-foreground hover:text-primary transition-colors"
                   onClick={toggleMenu}
                 >
                   About
-                </a>
-                <a
-                  href="#services"
+                </Link>
+                <Link
+                  to="/#services"
                   className="block px-3 py-2 text-foreground hover:text-primary transition-colors"
                   onClick={toggleMenu}
                 >
                   Services
-                </a>
-                <a
-                  href="#affiliations"
+                </Link>
+                <Link
+                  to="/#affiliations"
                   className="block px-3 py-2 text-foreground hover:text-primary transition-colors"
                   onClick={toggleMenu}
                 >
                   Affiliations
-                </a>
+                </Link>
                 <div className="px-3 py-2">
-                  <Button variant="default" className="w-full hover-glow">
-                    Contact Us
-                  </Button>
+                  <Link to="/contact" onClick={toggleMenu}>
+                    <Button variant="default" className="w-full hover-glow">
+                      Contact Us
+                    </Button>
+                  </Link>
                 </div>
               </div>
             </div>
