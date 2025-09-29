@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
-import { Phone, Mail, MapPin, Send, Clock, Globe } from "lucide-react";
+import { Phone, Mail, MapPin, Send, Clock, Globe, Facebook, Linkedin } from "lucide-react";
 import { z } from "zod";
 import Header from "@/components/Header";
 
@@ -95,6 +95,16 @@ const ContactPage = () => {
     window.location.href = url;
   };
 
+  const openLinkedIn = () => {
+    const url = "https://www.linkedin.com/in/viraj-sharma-8ab277323?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app";
+    window.open(url, "_blank", "noopener,noreferrer");
+  };
+
+  const openFacebook = () => {
+    const url = "https://www.facebook.com/share/15eEeE45me/?mibextid=wwXIfr";
+    window.open(url, "_blank", "noopener,noreferrer");
+  };
+
   return (
     <div className="min-h-screen bg-gradient-subtle">
       <Header />
@@ -144,6 +154,36 @@ const ContactPage = () => {
                         <h3 className="font-semibold text-foreground">Email</h3>
                         <p className="text-muted-foreground">sharmaviraj3543@gmail.com</p>
                         <p className="text-sm text-success">Click to send email</p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="hover-scale cursor-pointer" onClick={openLinkedIn}>
+                  <CardContent className="p-6">
+                    <div className="flex items-center space-x-4">
+                      <div className="w-12 h-12 bg-gradient-primary rounded-full flex items-center justify-center">
+                        <Linkedin className="h-6 w-6 text-white" />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-foreground">LinkedIn</h3>
+                        <p className="text-muted-foreground break-all">/in/viraj-sharma-8ab277323</p>
+                        <p className="text-sm text-success">Click to view profile</p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="hover-scale cursor-pointer" onClick={openFacebook}>
+                  <CardContent className="p-6">
+                    <div className="flex items-center space-x-4">
+                      <div className="w-12 h-12 bg-gradient-primary rounded-full flex items-center justify-center">
+                        <Facebook className="h-6 w-6 text-white" />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-foreground">Facebook</h3>
+                        <p className="text-muted-foreground break-all">facebook.com/share/15eEeE45me</p>
+                        <p className="text-sm text-success">Click to open link</p>
                       </div>
                     </div>
                   </CardContent>
@@ -333,6 +373,24 @@ const ContactPage = () => {
             >
               <Mail className="mr-2 h-5 w-5" />
               Send Email
+            </Button>
+            <Button 
+              onClick={openLinkedIn}
+              variant="outline"
+              size="lg"
+              className="hover-scale"
+            >
+              <Linkedin className="mr-2 h-5 w-5" />
+              LinkedIn
+            </Button>
+            <Button 
+              onClick={openFacebook}
+              variant="outline"
+              size="lg"
+              className="hover-scale"
+            >
+              <Facebook className="mr-2 h-5 w-5" />
+              Facebook
             </Button>
           </div>
         </div>
