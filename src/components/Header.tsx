@@ -1,10 +1,20 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Phone, Mail } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
+  const handleScrollTo = (sectionId: string) => (e?: React.MouseEvent) => {
+    if (location.pathname === "/") {
+      if (e) e.preventDefault();
+      const el = document.getElementById(sectionId);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+  };
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
@@ -16,11 +26,11 @@ const Header = () => {
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-1">
               <Phone className="h-4 w-4" />
-              <span>+91 98765 43210</span>
+              <span>+91 9301129199</span>
             </div>
             <div className="flex items-center gap-1">
               <Mail className="h-4 w-4" />
-              <span>info@virajexports.com</span>
+              <span>sharmaviraj3543@gmail.com</span>
             </div>
           </div>
           <div className="hidden sm:flex items-center gap-2 bg-primary-foreground text-primary px-3 py-1 rounded-full text-xs font-medium">
@@ -50,7 +60,11 @@ const Header = () => {
               <Link to="/#about" className="text-foreground hover:text-primary transition-colors">
                 About
               </Link>
-              <Link to="/#services" className="text-foreground hover:text-primary transition-colors">
+              <Link
+                to="/#services"
+                className="text-foreground hover:text-primary transition-colors"
+                onClick={handleScrollTo("services")}
+              >
                 Services
               </Link>
               <Link to="/#affiliations" className="text-foreground hover:text-primary transition-colors">
@@ -97,7 +111,10 @@ const Header = () => {
                 <Link
                   to="/#services"
                   className="block px-3 py-2 text-foreground hover:text-primary transition-colors"
-                  onClick={toggleMenu}
+                  onClick={(e) => {
+                    handleScrollTo("services")(e);
+                    toggleMenu();
+                  }}
                 >
                   Services
                 </Link>
